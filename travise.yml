@@ -1,0 +1,5 @@
+deploy:
+  provider: heroku
+  app:
+    master: photo-app-master
+    production: photo-app-develop
