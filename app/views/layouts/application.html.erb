@@ -28,9 +28,20 @@
         <a class="navbar-brand" href="#">PhotoApp</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <% if current_user%>
+              <li class = "inline-text">Welcome: <%= current_user.email %></li>
+              <li><%= link_to "Upload New Image", "/path1"  %></li>
+              <li>
+              <%= link_to "Sign Out", destroy_user_session_url, method: :delete, class: 'btn btn-primary sign-button'   %>
+            </li>
+            <% else %>
+              <li class="">
+                <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary sign-button' %>
+              </li>
+              <li>
+                <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-button' %>
+              </li>            
+            <% end %>
           </ul>
         </div>
       </div>
@@ -56,7 +67,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2018</p>
+        <p>&copy; Morolake Orekoya &copy; 2018</p>
       </footer>
 
     </div> <!-- /container -->
