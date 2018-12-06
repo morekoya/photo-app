@@ -1,0 +1,7 @@
+<h1 align="center"><%= 'Photo: ' + @photo.name %></h1>
+<div align="center">
+    <div class="row">
+      <%= image_tag @current_user.photos.url %>
+      <span class="badge"><%= link_to 'Edit Photo Name', edit_photo_path(@photo) %></span>
+    </div>
+</div>
