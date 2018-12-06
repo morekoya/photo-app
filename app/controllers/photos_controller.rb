@@ -9,6 +9,7 @@ class PhotosController < ApplicationController
   
    def create
     @photo = Photo.new(photo_params)
+    @photo.name = params[:title]["{:class=>%22form-control%22}"]
     if @photo.save
      flash[:notice] = "Successfully added new photo!"
      redirect_to root_path
@@ -32,7 +33,6 @@ class PhotosController < ApplicationController
         flash[:alert] = "Error deleting photo!"
       end
     end
-
   private
 
   def photo_params
