@@ -31,6 +31,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 gem 'paperclip'
+gem 'paperclip-cloudinary'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,6 +46,9 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'database_cleaner'
 end
 
 group :development do
