@@ -3,12 +3,10 @@
 <div>
 <% @photos.each do |photo| %>
   <div class="media-left col-lg-4">
-    <% photo.images.each do |image| %>
-    <% if image.image? %>
-      <% link_to image_tag(image, width:400), image %>
+    <% if photo.image? %>
+      <% link_to image_tag(photo, width:400), photo %>
     <% else %>
-      <% link_to image_tag(image.variant(resize:"400x400")), image %>
-      <% end %>
+      <% link_to image_tag(photo.variant(resize:"400x400")), photo %>
     <% end %>
   </div>
 <% end %>

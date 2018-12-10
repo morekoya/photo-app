@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.order('created_at')
+    @photos = current_user.images
    end
   
    def new
@@ -8,13 +8,9 @@ class PhotosController < ApplicationController
    end
   
    def create
-    # @photo = Photo.new(photo_params)
-    @photo = Photo.create! params.require(:photo).permit(photo_params)
-    # @photo.images.attach(params[:images])
-    @photo.name = params[:title]["{:class=>%22form-control%22}"]
-    if @photo.save
+    if current_user.images.attach(params[:photo][:image])
      flash[:notice] = "Successfully added new photo!"
-     redirect_to root_path
+     redirect_to photos_path
     else
      flash[:alert] = "Error adding new photo!"
      render :new
@@ -22,12 +18,11 @@ class PhotosController < ApplicationController
    end
 
   def show
-    @photo = Photo.find(params[:id])
-    # @current_user = current_user
+    @photo = current_user.images.find(params[:id])
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
+    @photo = current_user.images.find(params[:id])
       if @photo.purge
         flash[:notice] = "Successfully deleted photo!"
         redirect_to root_path

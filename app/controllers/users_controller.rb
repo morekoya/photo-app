@@ -3,7 +3,4 @@ class UsersController < ApplicationController
     current_user.photo.attach(params[:photo])
     redirect_to user
   end
-
-  private
-
 end
