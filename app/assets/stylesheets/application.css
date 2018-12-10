@@ -14,3 +14,17 @@
  *= require_tree .
  *= require_self
  */
+
+ jumbotron {
+  color: #ffff00;
+ }
+
+ .inline-text {
+   margin-top:18px;
+ }
+
+ .sign-button {
+  margin-top: 7px;
+  float: right;
+  color: white;
+ }
