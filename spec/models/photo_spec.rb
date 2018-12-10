@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Photo, type: :model do
-  it "has a name" do 
-    photo = create(:photo, name:"New Pic")
-    expect(photo.name).to eq "New Pic"
+  describe User do
+    # it { should have_attached_file(:images) }
+    # it { should validate_attachment_presence(:images) }
+    # it { should validate_attachment_content_type(:photos).
+    #             allowing('image/png', 'image/gif').
+    #             rejecting('text/plain', 'text/xml') }
   end
 end
