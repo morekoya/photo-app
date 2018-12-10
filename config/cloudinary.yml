@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: expcoder
+  api_key: '122787764482954'
+  api_secret: YU-bO-ZGt2_uguoOCcslL3Pz-4Q
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: expcoder
+  api_key: '122787764482954'
+  api_secret: YU-bO-ZGt2_uguoOCcslL3Pz-4Q
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: expcoder
+  api_key: '122787764482954'
+  api_secret: YU-bO-ZGt2_uguoOCcslL3Pz-4Q
+  enhance_image_tag: true
+  static_image_support: false

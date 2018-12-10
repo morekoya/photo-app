@@ -1,0 +1,14 @@
+<div class="page-header"><h1>Photos</h1></div>
+
+<div>
+<% @photos.each do |photo| %>
+  <div class="media-left col-lg-4">
+    <% if photo.image? %>
+      <% link_to image_tag(photo, width:400), photo %>
+    <% else %>
+      <% link_to image_tag(photo.variant(resize:"400x400")), photo %>
+    <% end %>
+  </div>
+<% end %>
+</div>
+
