@@ -11,9 +11,9 @@ class PhotosController < ApplicationController
     photos = Photo.new
     photos.images << photos.images.attach(params[:photo][:image])
     if current_user.photos << photos
-      current_user.photos.images.first.name = 'woah'
-     flash[:notice] = "Successfully added new photo!"
-     redirect_to photos_path
+      photos.images.first.name = 'woah'
+      flash[:notice] = "Successfully added new photo!"
+      redirect_to photos_path
     else
      flash[:alert] = "Error adding new photo!"
      render :new
