@@ -6,6 +6,8 @@ services:
 test:
   adapter: postgresql
   database: photo-app-test
+before_script:
+  - cp config/database.yml.travis config/database.yml
 
 before_install:
 - gem update --system
