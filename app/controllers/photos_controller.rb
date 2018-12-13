@@ -9,6 +9,7 @@ class PhotosController < ApplicationController
   
    def create
     photos = Photo.new
+    
     photos.images << photos.images.attach(params[:photo][:image])
     if current_user.photos << photos
       photos.images.first.name = 'woah'

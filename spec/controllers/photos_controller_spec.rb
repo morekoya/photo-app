@@ -18,19 +18,20 @@ RSpec.describe PhotosController, type: :controller do
     context "with valid attributes" do
       it "saves the new contact in the database" do
         login
+        
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
         variable = Photo.all.count
         
-        post :create, params: { post: { photos: photo } }
+        post :create, params: { photo: {image: photo} }
         expect(variable).to be < Photo.all.count
       end
 
-      it "redirects to the home page" do
+      it "redirects to the photos page" do
         login
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
         
-        post :create, params: { post: { photos: photo } }
-        expect(response).to render_template photo_path
+        post :create, params: { photo: {image: photo} }
+        expect(response).to redirect_to photos_path
       end
     end
     
@@ -38,15 +39,29 @@ RSpec.describe PhotosController, type: :controller do
       it "does not save the new contact in the database" do 
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
         variable = Photo.all.count
-        post :create, params: { post: { photos: photo } }
+        post :create, params: { photo: {image: photo} }
         
         expect(variable).to be >= Photo.count
       end
       
-      it "renders the sign_in page" do 
+      it "renders the user sign in page" do 
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))  
-        post :create, params: { post: { photos: [photo] } }
-        expect(response).to render_template user_session_path
+        post :create, params: { post: { photos: photo } }
+        expect(response).to redirect_to user_session_path
+      end
+    end
+  end
+
+  describe "#delete" do
+    context "with valid attributes" do
+      it "deletes the picture" do
+        login
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
+        post :create, params: { photo: { image: photo} }
+        id = Photo.last.id
+
+        delete :destroy, params: { id: id }
+        expect(Photo.last.images.first).to be nil
       end
     end
   end
