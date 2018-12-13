@@ -5,7 +5,7 @@ This is the readme for Photo-app. a user can upload pictures to upload pictures 
 ## External Dependencies
 All the dependencies can be found in the Gemfile.
 ## Runnning tests
-ou can run tests locally by running rspec locally. a longer version of the rspec intructions follows:
+You can run tests locally by running checking rspec on Travis. a manual version of the rspec intructions is as follows:
 1. clone the repo to your local machine
 2. cd into the `photo-app` folder
 3. Run `rails db:setup` to setup the database
