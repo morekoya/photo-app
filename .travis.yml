@@ -7,7 +7,7 @@ test:
   adapter: postgresql
   database: photo-app-test
 before_script:
-  - "psql -c 'create database photo-app-test;' -U postgres"
+  - "psql -c 'create database photo_app_test' -U postgres"
   - "rake db:migrate"
 before_install:
 - gem update --system
