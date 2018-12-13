@@ -1,8 +1,13 @@
 language: ruby
 rvm:
   - 2.4
+services:
+  - postgresql
+test:
+  adapter: postgresql
+  database: photo-app-test
 before_install:
 - gem update --system
 - gem --version
 after_install:
-- rails db:setup
+- rake db:setup
