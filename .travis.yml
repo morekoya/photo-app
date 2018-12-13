@@ -7,8 +7,8 @@ test:
   adapter: postgresql
   database: photo-app-test
 before_script:
-  - psql -U postgres -c "create databse photo-app-test"
+  - psql -U postgres -c "create database photo-app-test"
 
 before_install:
 - gem update --system
-- gem --version
+- gem install bundler
