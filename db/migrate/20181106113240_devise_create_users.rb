@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: trued
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   def change
