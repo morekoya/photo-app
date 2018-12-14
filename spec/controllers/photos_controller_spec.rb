@@ -51,17 +51,4 @@ RSpec.describe PhotosController, type: :controller do
       end
     end
   end
-
-  describe "#delete" do
-    context "with valid login" do
-      it "deletes the picture" do
-        login
-        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
-        post :create, params: { photo: { image: photo} }
-
-        delete :destroy, params: { id: Photo.last.id }
-        expect(Photo.last.images.first).to be nil
-      end
-    end
-  end
 end
