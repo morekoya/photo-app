@@ -33,6 +33,7 @@ gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'mini_magick'
+gem 'pg_search'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

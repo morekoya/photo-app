@@ -1,30 +1,23 @@
-<h1 align="center">All Alpha Bloggers</h1>
-
 <div align="center">
+<h3>Search for A User</h3>
+<div id="stock-lookup">
+  <%= form_tag users_path, method: :get do %>
+    <div class="form-group row no-padding text-center col-md-9">
+      <div class="col-md-10">
+        <%= text_field_tag 'term', params[:term], placeholder: "Enter user's email", class: 'form-control search-box input-lg' %>
+        </div>
+      <div class="col-md-2">
+        <%= submit_tag 'Search!', class: 'btn btn-lg btn-success' %>
+        </div>
+  <% end %>
+</div>
 
+  
 <% @users.each do |user| %>
-
-<ul class="listing">
-
-<div class="row">
-
-<div class="well col-md-4 col-md-offset-4">
-
-<li><%= link_to user_path(user) %></li>
-
-<li class="article-title">
-
-<%= link_to user, user_path(user) %>
-
-</li>
-
-<li><small><%= pluralize(user.articles.count, "article") if user.articles %></small></li>
-
-</div>
-
-</div>
-
-</ul>
+  <div class="well col-md-9">
+    <span class="col-md-4"><%= link_to user.email, user_url(user) %></span>
+    <span class="col-md-4 col-md-offset-4 btn btn-info"> <%= link_to 'Pictures', user_pictures_path(user)%></span>
+  </div>
 
 <% end %>
 

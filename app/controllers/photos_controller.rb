@@ -1,13 +1,18 @@
 class PhotosController < ApplicationController
   def index
     @photos = current_user.photos(&:images)
-   end
+  end
+
+  def user_pictures
+    @user = User.find(params[:format])
+    @photos = @user.photos(&:images)
+  end
    
-   def new
+  def new
     @photo = Photo.new
-   end
+  end
   
-   def create
+  def create
     photos = Photo.new
     
     photos.images << photos.images.attach(params[:photo][:image])
@@ -19,7 +24,7 @@ class PhotosController < ApplicationController
      flash[:alert] = "Error adding new photo!"
      render :new
     end
-   end
+  end
   
   private
 

@@ -1,8 +1,8 @@
-<div class="page-header"><h1>Photos</h1></div>
+<div class="page-header"><h1> <%= @user.email %>'s Photos</h1></div>
 
 <div>
 <% @photos.each do |photo| %>
-  <div class="media-left col-md-3">
+  <div class="media-left col-xs-3">
     <% photo.images.each do |image|%>
         <%= link_to(image_tag(image, width:250, height: 150), image) %>
         <%= image.name %>
