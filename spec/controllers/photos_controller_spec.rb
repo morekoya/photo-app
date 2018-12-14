@@ -1,63 +1,67 @@
 require 'rails_helper'
 
+def login
+  user = create(:user)
+  sign_in user
+end
+
 RSpec.describe PhotosController, type: :controller do
   describe "#index" do
     it "works when signed in" do 
-      user = create(:user)
-      sign_in user
+      login
       get :index
       expect(response).to render_template :index
-    end
-
-    it "redirects to sign in page when not signed in" do
-      get :index
-      expect(response).to redirect_to user_session_path
-    end
-  end
-
-  describe "#show" do
-    it "should be successful" do
-      user = create(:user)
-      sign_in user
-      photos = create(:photo)
-
-      get :show, id: user.images.first.id
-      response.should be_success
     end
   end
 
   describe "#create" do
     context "with valid attributes" do
-      before :each do 
-        user = create(:user)
-        sign_in user
-        file = "File.open(File.join(Rails.root, 'public', 'apple-touch-icon.png'))"
-        photo = fixture_file_upload(file)
-      end
-
       it "saves the new contact in the database" do
+        login
         
-        expect(post :create, params: { post: { photos: photo } } ).to change(Photo, :count).by 1
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
+        variable = Photo.all.count
+        
+        post :create, params: { photo: {image: photo} }
+        expect(variable).to be < Photo.all.count
       end
 
-      it "redirects to the home page" do
-        post :create, params: { post: { photos: photo } }
-        expect(response).to render_template photo_path
+      it "redirects to the photos page" do
+        login
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
+        
+        post :create, params: { photo: {image: photo} }
+        expect(response).to redirect_to photos_path
       end
     end
     
     context "with invalid attributes" do
-      before :all do
-          PhotosController = fixture_file_upload('public', 'apple-touch-icon.png', 'image/png')
-      end
-
       it "does not save the new contact in the database" do 
-        expect(post :create, params: { post: { photos: photo } }).to_not change(Photo, :count).by 1
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
+        variable = Photo.all.count
+        post :create, params: { photo: {image: photo} }
+        
+        expect(variable).to be >= Photo.count
       end
       
-      it "renders the sign_in page" do    
-        post :create, params: { post: { photos: [photo] } }
-        expect(response).to render_template user_session_path
+      it "renders the user sign in page" do 
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))  
+        post :create, params: { post: { photos: photo } }
+        expect(response).to redirect_to user_session_path
+      end
+    end
+  end
+
+  describe "#delete" do
+    context "with valid attributes" do
+      it "deletes the picture" do
+        login
+        photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
+        post :create, params: { photo: { image: photo} }
+        id = Photo.last.id
+
+        delete :destroy, params: { id: id }
+        expect(Photo.last.images.first).to be nil
       end
     end
   end
