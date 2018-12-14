@@ -5,6 +5,7 @@ class Photo < ActiveRecord::Migration[5.1]
       t.string :content,  null: false, default: ""
       t.string :location, null: false, default: ""
       t.timestamp :created_at
+      
     end
   end
 end
