@@ -1,5 +1,6 @@
 
 FactoryBot.define do
+  
   factory :photo do
     name { FFaker::Lorem.word }    
     user_id { user.id }
