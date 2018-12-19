@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   def index
     @photos = current_user.photos(&:images)
    end
-  
+   
    def new
     @photo = Photo.new
    end
@@ -20,20 +20,7 @@ class PhotosController < ApplicationController
      render :new
     end
    end
-
-  def show
-    @photo = current_user.photos(&:images).find(params[:id])
-  end
-
-  def destroy
-    @photo = Photo.find( params[:id])
-      if @photo.images.first.purge
-        flash[:notice] = "Successfully deleted photo!"
-        redirect_to root_path
-      else
-        flash[:alert] = "Error deleting photo!"
-      end
-    end
+  
   private
 
   def photo_params
