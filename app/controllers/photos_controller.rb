@@ -30,6 +30,7 @@ class PhotosController < ApplicationController
     if current_user 
       @photo = Photo.find(params[:id])
       if @photo.images.purge
+        @photo.destroy
         flash[:notice] = "Successfully deleted photo"
       else 
         flash[:alert] = "Error deleteing photo"
