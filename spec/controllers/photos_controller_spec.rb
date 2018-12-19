@@ -22,7 +22,7 @@ RSpec.describe PhotosController, type: :controller do
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
         variable = Photo.all.count
         
-        post :create, params: { photo: {image: photo} }
+        post :create, params: { photo: {image: photo}, title: { "{:class=>%22form-control%22}": "pic" } }
         expect(variable).to be < Photo.all.count
       end
 
@@ -30,7 +30,7 @@ RSpec.describe PhotosController, type: :controller do
         login
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
         
-        post :create, params: { photo: {image: photo} }
+        post :create, params: { photo: {image: photo}, title: { "{:class=>%22form-control%22}": "pic" }}
         expect(response).to redirect_to photos_path
       end
     end
