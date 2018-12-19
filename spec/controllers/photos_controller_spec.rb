@@ -59,13 +59,14 @@ RSpec.describe PhotosController, type: :controller do
       get :user_pictures, params: { format: userB.id}
       expect(response).to render_template 'photos/user_pictures'
     end
+  end
     
   describe "#delete" do
     context "with valid attributes" do
       it "deletes the picture" do
         login
         photo = fixture_file_upload(File.open(File.join(Rails.root, 'spec', 'files', 'worldmap.png')))
-        post :create, params: { photo: { image: photo} }
+        post :create, params: { photo: { image: photo}, title: { "{:class=>%22form-control%22}": "hi" } }
 
         delete :destroy, params: { id: Photo.last.id }
         expect(Photo.last.images.first).to be nil

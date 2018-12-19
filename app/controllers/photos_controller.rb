@@ -25,7 +25,16 @@ class PhotosController < ApplicationController
      render :new
     end
   end
-  
+
+  def destroy
+    @photo = Photo.find(params[:id])
+    if @photo.images.purge
+      flash[:notice] = "Successfully deleted photo"
+    else 
+      flash[:alert] = "Error deleteing photo"
+    end
+    redirect_to photos_path
+  end
   private
 
   def photo_params
