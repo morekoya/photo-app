@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
     photos = Photo.new
     
     photos.images << photos.images.attach(params[:photo][:image])
-    photos.name =params["title"]["{:class=>%22form-control%22}"]
+    photos.name = params["title"]["{:class=>%22form-control%22}"]
     if current_user.photos << photos
       flash[:notice] = "Successfully added new photo!"
       redirect_to photos_path
