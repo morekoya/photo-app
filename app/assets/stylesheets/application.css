@@ -15,6 +15,7 @@
  *= require_self
  */
 
+
  jumbotron {
   color: #ffff00;
  }
@@ -28,3 +29,7 @@
   float: right;
   color: white;
  }
+
+  footer {
+    bootom: 1px
+  }
