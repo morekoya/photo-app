@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   def index
     @photos = current_user.photos(&:images)
-  end
+   end
 
   def user_pictures
     @user = User.find(params[:format])
