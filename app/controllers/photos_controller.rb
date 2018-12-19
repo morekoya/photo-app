@@ -27,13 +27,17 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
-    if @photo.images.purge
-      flash[:notice] = "Successfully deleted photo"
-    else 
-      flash[:alert] = "Error deleteing photo"
+    if current_user 
+      @photo = Photo.find(params[:id])
+      if @photo.images.purge
+        flash[:notice] = "Successfully deleted photo"
+      else 
+        flash[:alert] = "Error deleteing photo"
+      end
+      redirect_to photos_path
+    else
+      flash[:alert] = "Error deleting - this is not your photo"
     end
-    redirect_to photos_path
   end
   private
 
