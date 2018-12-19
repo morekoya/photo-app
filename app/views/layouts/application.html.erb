@@ -29,6 +29,7 @@
         
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+              <li><%= link_to "Check out other user photos", users_path %></li>
             <li><%= link_to "Upload Image", new_photo_path  %></li>
             <% if current_user %>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete  %></li>
@@ -50,10 +51,12 @@
         <div class="col-lg-3">
 
           <div class="well sidebar-nav">
+           
             <h3>Sidebar</h3>
             <ul class="nav nav-list">
               <li><%= link_to "My Photos", photos_path %></li>
               <li><%= link_to "My Profile", user_registration_path, method: :patch  %></li>
+              <li></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

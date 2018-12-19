@@ -4,5 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :photos
-  
+  include PgSearch
+  pg_search_scope :search_by_email, against: [:email],
+    using: {
+      tsearch: {
+        prefix: true
+      }
+    }  
 end

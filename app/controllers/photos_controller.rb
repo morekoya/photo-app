@@ -1,25 +1,30 @@
 class PhotosController < ApplicationController
   def index
     @photos = current_user.photos(&:images)
-   end
+  end
+
+  def user_pictures
+    @user = User.find(params[:format])
+    @photos = @user.photos(&:images)
+  end
    
-   def new
+  def new
     @photo = Photo.new
-   end
+  end
   
-   def create
+  def create
     photos = Photo.new
     
     photos.images << photos.images.attach(params[:photo][:image])
+    photos.name =params["title"]["{:class=>%22form-control%22}"]
     if current_user.photos << photos
-      photos.images.first.name = 'woah'
       flash[:notice] = "Successfully added new photo!"
       redirect_to photos_path
     else
      flash[:alert] = "Error adding new photo!"
      render :new
     end
-   end
+  end
   
   private
 

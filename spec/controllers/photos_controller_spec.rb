@@ -52,6 +52,14 @@ RSpec.describe PhotosController, type: :controller do
     end
   end
 
+  describe "#user-pictures" do
+    it "lists user's pictures" do
+      login
+      userB = create(:user)
+      get :user_pictures, params: { format: userB.id}
+      expect(response).to render_template 'photos/user_pictures'
+    end
+    
   describe "#delete" do
     context "with valid attributes" do
       it "deletes the picture" do
