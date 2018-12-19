@@ -10,5 +10,5 @@ class User < ApplicationRecord
       tsearch: {
         prefix: true
       }
-    }
+    }  
 end

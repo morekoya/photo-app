@@ -5,7 +5,7 @@ services:
   - postgresql
 test:
   adapter: postgresql
-  database: photo-app-test
+  database: photo_app_test
 before_script:
   - "psql -c 'create database photo_app_test' -U postgres"
   - "bundle exec rake db:migrate"
